@@ -244,7 +244,6 @@
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
 import { isAuthenticated } from '../../lib/auth';
-import Image from 'next/image';
 
 export default function DetailsPage() {
   // const router = useRouter();
@@ -430,77 +429,7 @@ export default function DetailsPage() {
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-6 bg-gray-50 min-h-screen">
 
-      <nav className="bg-blue-500 p-4 text-white">
-              <div className="container mx-auto">
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex justify-between items-center">
-                  <div className="flex items-center">
-                    <Image src="/logo.png" alt="Logo" width={70} height={70} className="mr-2" />
-                    <h1 className="text-xl font-bold">NABH PETROLEUM</h1>
-                  </div>
-                  <div className="text-center">
-                    <h5 className="font-bold text-sm lg:text-base">
-                      Tumb, Bhilad-Sanjan Road, Ta-Umargam, <br />
-                      Dist.-Valsad, Pin-396150
-                    </h5>
-                  </div>
-                  <div>
-                    <button
-                      onClick={() => router.push('/home')}
-                      className="bg-blue-700 px-4 py-2 rounded hover:bg-blue-800 transition-colors"
-                    >
-                      Home
-                    </button>
-                  </div>
-                </div>
-      
-                {/* Mobile Navigation */}
-                <div className="md:hidden">
-                  <div className="flex justify-between items-center">
-                    <div className="flex items-center">
-                      <Image src="/logo.png" alt="Logo" width={50} height={50} className="mr-2" />
-                      <h1 className="text-lg font-bold">NABH PETROLEUM</h1>
-                    </div>
-                    <button
-                      onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                      className="text-white hover:text-gray-200 focus:outline-none"
-                    >
-                      <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-                        />
-                      </svg>
-                    </button>
-                  </div>
-      
-                  {/* Mobile Menu Dropdown */}
-                  {isMobileMenuOpen && (
-                    <div className="mt-4 bg-blue-600 rounded-lg p-4">
-                      <div className="text-center mb-4">
-                        <h5 className="font-bold text-sm">
-                          Tumb, Bhilad-Sanjan Road, Ta-Umargam, <br />
-                          Dist.-Valsad, Pin-396150
-                        </h5>
-                      </div>
-                      <div className="text-center">
-                        <button
-                          onClick={() => {
-                            router.push('/home');
-                            setIsMobileMenuOpen(false);
-                          }}
-                          className="bg-blue-700 px-4 py-2 rounded hover:bg-blue-800 transition-colors w-full"
-                        >
-                          Home
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </nav>
+      <h1>fuyfgyuggsg</h1>
 
       <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-gray-800">
         Fuel Calculator - Petrol & Diesel
