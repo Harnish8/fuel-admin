@@ -21,10 +21,11 @@ export default function FuelFormContent() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [updatedTotalLiters, setUpdatedTotalLiters] = useState(totalLiters);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const fetchTotalLiters = useCallback(async () => {
     if (!vehicleNumber) return;
-    
+
     try {
       const response = await fetch('/api/check-vehicle', {
         method: 'POST',
@@ -52,7 +53,7 @@ export default function FuelFormContent() {
         await fetchTotalLiters();
       }
     }
-    
+
     if (vehicleNumber) {
       checkAuth();
     }
@@ -111,7 +112,7 @@ export default function FuelFormContent() {
 
   return (
     <div className="min-h-screen">
-      <nav className="bg-blue-500 p-4 text-white">
+      {/* <nav className="bg-blue-500 p-4 text-white">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">
             <Image src="/logo.png" alt="Logo" width={70} height={70} className="mr-2" />
@@ -128,7 +129,81 @@ export default function FuelFormContent() {
             </button>
           </div>
         </div>
+      </nav> */}
+
+      <nav className="bg-blue-500 p-4 text-white">
+        <div className="container mx-auto">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex justify-between items-center">
+            <div className="flex items-center">
+              <Image src="/logo.png" alt="Logo" width={70} height={70} className="mr-2" />
+              <h1 className="text-xl font-bold">NABH PETROLEUM</h1>
+            </div>
+            <div className="text-center">
+              <h5 className="font-bold text-sm lg:text-base">
+                Tumb, Bhilad-Sanjan Road, Ta-Umargam, <br />
+                Dist.-Valsad, Pin-396150
+              </h5>
+            </div>
+            <div>
+              <button
+                onClick={() => router.push('/home')}
+                className="bg-blue-700 px-4 py-2 rounded hover:bg-blue-800 transition-colors"
+              >
+                Home
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Navigation */}
+          <div className="md:hidden">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center">
+                <Image src="/logo.png" alt="Logo" width={50} height={50} className="mr-2" />
+                <h1 className="text-lg font-bold">NABH PETROLEUM</h1>
+              </div>
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="text-white hover:text-gray-200 focus:outline-none"
+              >
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                  />
+                </svg>
+              </button>
+            </div>
+
+            {/* Mobile Menu Dropdown */}
+            {isMobileMenuOpen && (
+              <div className="mt-4 bg-blue-600 rounded-lg p-4">
+                <div className="text-center mb-4">
+                  <h5 className="font-bold text-sm">
+                    Tumb, Bhilad-Sanjan Road, Ta-Umargam, <br />
+                    Dist.-Valsad, Pin-396150
+                  </h5>
+                </div>
+                <div className="text-center">
+                  <button
+                    onClick={() => {
+                      router.push('/home');
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="bg-blue-700 px-4 py-2 rounded hover:bg-blue-800 transition-colors w-full"
+                  >
+                    Home
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
       </nav>
+
+
       <div className="container mx-auto p-4">
         <h2 className="text-2xl font-bold text-black mb-4 text-center">Fuel Details for {vehicleNumber}</h2>
         <p className="text-center mb-4">Total Liters Filled: {updatedTotalLiters}</p>
