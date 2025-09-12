@@ -247,13 +247,32 @@ export default function Home() {
           </button>
         </form>
       </div>
-      <div className='flex justify-center'>
+      <div className='flex justify-center gap-4'>
         <button
           onClick={() => router.push('/calculator')}
           className="bg-yellow-400 text-white px-4 font-bold py-2 rounded"
         >
           Calculator
         </button>
+
+        {/* Conditional Buttons - Only for superadmin */}
+        {userRole === 'superadmin' && (
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={() => router.push('/entries')}
+              className="bg-green-500 text-white px-6 font-bold py-3 rounded-lg hover:bg-green-600 transition-colors"
+            >
+              View All Entries
+            </button>
+            <button
+              onClick={() => router.push('/vehicle-groups')}
+              className="bg-purple-500 text-white px-6 font-bold py-3 rounded-lg hover:bg-purple-600 transition-colors"
+            >
+              Vehicle Groups
+            </button>
+          </div>
+        )}
+
       </div>
     </div>
   );
