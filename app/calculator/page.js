@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { isAuthenticated } from '../../lib/auth';
 
 export default function DetailsPage() {
-  // const router = useRouter();
+  const router = useRouter();
   // Petrol cards
   const [petrolCards, setPetrolCards] = useState([
     { field1: '', field2: '', field3: '', result: 0 },
@@ -187,10 +187,10 @@ export default function DetailsPage() {
   )
 
   return (
-    <div className="max-w-6xl mx-auto p-4 md:p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-gray-800">
+    <div className="min-h-screen">
+      {/* <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-gray-800">
         Fuel Calculator - Petrol & Diesel
-      </h1>
+      </h1> */}
       <nav className="bg-blue-500 p-4 text-white">
         <div className="container mx-auto">
           {/* Desktop Navigation */}
