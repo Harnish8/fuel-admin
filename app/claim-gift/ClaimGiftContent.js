@@ -16,6 +16,7 @@ export default function ClaimGiftContent() {
   const [claimLiters, setClaimLiters] = useState('');
   const [fetchedTotalLiters, setFetchedTotalLiters] = useState(queryTotalLiters);
   const [giftName, setGiftName] = useState('');
+  const [receiverName, setReceiverName] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [claims, setClaims] = useState([]);
@@ -74,8 +75,12 @@ export default function ClaimGiftContent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const litersToClaim = parseFloat(claimLiters);
-    if (!litersToClaim || litersToClaim <= 0 || !giftName) {
-      setError('Please enter a valid number of liters');
+    // if (!litersToClaim || litersToClaim <= 0 || !giftName) {
+    //   setError('Please enter a valid number of liters');
+    //   return;
+    // }
+    if (!litersToClaim || litersToClaim <= 0 || !giftName || !receiverName.trim()) {
+      setError('Please enter valid liters, gift name, and receiver name');
       return;
     }
     if (litersToClaim > fetchedTotalLiters) {
@@ -86,13 +91,27 @@ export default function ClaimGiftContent() {
       const response = await fetch('/api/claim-gift', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ vehicleNumber, giftName, claimLiters: litersToClaim }),
+        body: JSON.stringify({ vehicleNumber, giftName, claimLiters: litersToClaim, receiverName: receiverName.trim() }),
       });
       const data = await response.json();
       if (response.ok) {
         setSuccess(`Gift claimed! Remaining liters: ${data.remainingLiters}`);
         setFetchedTotalLiters(data.remainingLiters);
         setClaimLiters('');
+        setGiftName('');
+        setReceiverName('');
+
+         // Refresh claims list
+        const entriesResponse = await fetch('/api/vehicle-claims', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ vehicleNumber }),
+        });
+        const entriesData = await entriesResponse.json();
+        if (entriesResponse.ok) {
+          setClaims(entriesData.claims || []);
+        }
+
       } else {
         setError(data.error);
       }
@@ -221,6 +240,19 @@ export default function ClaimGiftContent() {
               required
             />
           </div>
+          <div className="mb-4">
+            <label className="block text-black mb-2" htmlFor="receiverName">Receiver Name</label>
+            <input
+              type="text"
+              id="receiverName"
+              value={receiverName}
+              onChange={(e) => setReceiverName(e.target.value)}
+              className="w-full p-2 border rounded text-black"
+              placeholder="Enter receiver's name"
+              required
+            />
+          </div>
+
           {error && <p className="text-red-500 mb-4">{error}</p>}
           {success && <p className="text-green-500 mb-4">{success}</p>}
           <button type="submit" className="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">
@@ -238,6 +270,7 @@ export default function ClaimGiftContent() {
                   <th className="py-3 px-6 border-b text-black font-bold">Date</th>
                   <th className="py-3 px-6 border-b text-black font-bold">Liters Claimed</th>
                   <th className="py-3 px-6 border-b text-black font-bold">Gift Claimed</th>
+                  <th className="py-3 px-6 border-b text-black font-bold">Receiver Name</th>
                 </tr>
               </thead>
               <tbody>
@@ -253,6 +286,7 @@ export default function ClaimGiftContent() {
                     </td>
                     <td className="py-3 px-6 border-b text-black">{claim.liters}</td>
                     <td className="py-3 px-6 border-b text-black">{claim.giftName}</td>
+                    <td className="py-3 px-6 border-b text-black">{claim.receiverName || 'N/A'}</td>
                   </tr>
                 ))}
               </tbody>

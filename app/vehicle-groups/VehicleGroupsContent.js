@@ -23,7 +23,11 @@ export default function VehicleGroupsContent() {
     'group4': { name: '501-1000 Liters', color: 'bg-green-50 border-green-200' },
     'group5': { name: '1001-1500 Liters', color: 'bg-blue-50 border-blue-200' },
     'group6': { name: '1501-3000 Liters', color: 'bg-purple-50 border-purple-200' },
-    'group7': { name: '3000+ Liters', color: 'bg-pink-50 border-pink-200' }
+    'group7': { name: '3001-5000 Liters', color: 'bg-pink-50 border-pink-200' },
+    'group8': { name: '5001-10000 Liters', color: 'bg-pink-50 border-orange-200' },
+    'group9': { name: '10001-15000 Liters', color: 'bg-pink-50 border-yellow-200' },
+    'group10': { name: '15001-20000 Liters', color: 'bg-pink-50 border-green-200' },
+    'group11': { name: '20000+ Liters', color: 'bg-pink-50 border-blue-200' }
   };
 
   const fetchVehicleGroups = useCallback(async () => {
@@ -231,7 +235,7 @@ export default function VehicleGroupsContent() {
                     <th className="py-3 px-4 border-b text-black text-left">Driver Name</th>
                     <th className="py-3 px-4 border-b text-black text-left">Contact Number</th>
                     <th className="py-3 px-4 border-b text-black text-left">Total Entries</th>
-                    <th className="py-3 px-4 border-b text-black text-left">Last Entry Date</th>
+                    {/* <th className="py-3 px-4 border-b text-black text-left">Last Entry Date</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -253,7 +257,7 @@ export default function VehicleGroupsContent() {
                           {vehicle.totalEntries}
                         </span>
                       </td>
-                      <td className="py-3 px-4 border-b text-black">{formatDate(vehicle.lastEntryDate)}</td>
+                      {/* <td className="py-3 px-4 border-b text-black">{formatDate(vehicle.lastEntryDate)}</td> */}
                     </tr>
                   ))}
                 </tbody>

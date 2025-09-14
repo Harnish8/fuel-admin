@@ -34,7 +34,11 @@ export async function GET(request) {
       'group4': { min: 501, max: 1000, name: '501-1000 Liters' },
       'group5': { min: 1001, max: 1500, name: '1001-1500 Liters' },
       'group6': { min: 1501, max: 3000, name: '1501-3000 Liters' },
-      'group7': { min: 3001, max: Infinity, name: '3000+ Liters' }
+      'group7': { min: 3001, max: 5000, name: '3001-5000 Liters' },
+      'group8': { min: 5001, max: 10000, name: '5001-10000 Liters' },
+      'group9': { min: 10001, max: 15000, name: '10001-15000 Liters' },
+      'group10': { min: 15001, max: 20000, name: '15001-20000 Liters' },
+      'group11': { min: 20000, max: Infinity, name: '20000+ Liters' }
     };
 
     // Filter vehicles by group if specified

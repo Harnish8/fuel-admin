@@ -30,7 +30,8 @@ export default function DetailsPage() {
     const num1 = parseFloat(field1) || 0
     const num2 = parseFloat(field2) || 0
     const num3 = parseFloat(field3) || 0
-    return num1 - num2 - num3
+    // return num1 - num2 - num3
+    return parseFloat((num1 - num2 - num3).toFixed(2))
   }
 
   const handleInputChange = (cardIndex, fieldName, value, fuelType) => {
@@ -54,19 +55,22 @@ export default function DetailsPage() {
   }
 
   const getTotalSum = (cards) => {
-    return cards.reduce((sum, card) => sum + card.result, 0)
+    // return cards.reduce((sum, card) => sum + card.result, 0)
+    return parseFloat(cards.reduce((sum, card) => sum + card.result, 0).toFixed(2))
   }
 
   const getFinalResult = (cards, multiplier) => {
     const totalSum = getTotalSum(cards)
     const multiplierValue = parseFloat(multiplier) || 0
-    return totalSum * multiplierValue
+    // return totalSum * multiplierValue
+    return parseFloat((totalSum * multiplierValue).toFixed(2))
   }
 
   const getGrandTotal = () => {
     const petrolFinal = getFinalResult(petrolCards, petrolMultiplier)
     const dieselFinal = getFinalResult(dieselCards, dieselMultiplier)
-    return petrolFinal + dieselFinal
+    // return petrolFinal + dieselFinal
+    return parseFloat((petrolFinal + dieselFinal).toFixed(2))
   }
 
   const renderFuelSection = (cards, fuelType, multiplier, setMultiplier, color, fname) => (
