@@ -684,6 +684,7 @@ export default function DetailsContent() {
                   <th className="py-2 px-4 border-b text-black">Liters</th>
                   <th className="py-2 px-4 border-b text-black">Driver Name</th>
                   <th className="py-2 px-4 border-b text-black">Filler Name</th>
+                  <th className="py-2 px-4 border-b text-black">Note</th>
                   <th className="py-2 px-4 border-b text-black">Time</th>
                   {/* Conditionally show Actions column only for superadmin */}
                   {userRole === 'superadmin' && (
@@ -732,12 +733,21 @@ export default function DetailsContent() {
                             className="w-32 p-1 border rounded text-black"
                           />
                         </td>
+                        <td className="py-2 px-4 border-b text-black">
+                          <input
+                            type="text"
+                            value={editForm.note}
+                            onChange={(e) => setEditForm({ ...editForm, note: e.target.value })}
+                            className="w-32 p-1 border rounded text-black"
+                          />
+                        </td>
                       </>
                     ) : (
                       <>
                         <td className="py-2 px-4 border-b text-black">{entry.liters}</td>
                         <td className="py-2 px-4 border-b text-black">{entry.driverName}</td>
                         <td className="py-2 px-4 border-b text-black">{entry.fillerName}</td>
+                        <td className="py-2 px-4 border-b text-black">{entry.note}</td>
                       </>
                     )}
 
